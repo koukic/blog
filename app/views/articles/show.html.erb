@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="col-md-12 margin-top-5per article-block">
+    <% if @article.image_id.present? %>
+      <%= image_tag attachment_url(@article, :image), class: 'col-md-12 article-image padding-top-15' %>
+    <% else %>
+    <%= image_tag 'dog.jpg', class: 'col-md-12 article-image padding-top-15' %>
+    <% end %>
+    
+    
+    <h1 class="text-center"><%= @article.title %></h1>
+    <div class ="padding-bottom-15" style="padding: 10px">
+      <%= simple_format @article.body  %>
+      <p class="text-right">
+        <%= @article.created_at.strftime("%Y年%m月%d日 %H時%M分") %>
+      </p>
+    </div>
+    <div class="row">
+      <%= link_to '編集' , edit_article_path(@article), class: 'btn btn-primary', style: 'margin: 10px' %>
+      <%= link_to '削除' , article_path(@article), method: :delete, data: {confirm: '削除してもよろしいですか？'}, class: 'btn btn-danger', style: 'margin: 10px' %>
+    </div>
+  </div>
+</div>
